@@ -26,3 +26,42 @@ FROM 10construction;
 SELECT *
 FROM opportunity o;
 
+SELECT *
+FROM gpt_description gd;
+
+SELECT *
+FROM gpt_keyword gk;
+
+DESCRIBE gpt_keyword;
+
+DESCRIBE gpt_description;
+
+CREATE TABLE gpt_keyword (
+  KeywordID INT AUTO_INCREMENT PRIMARY KEY,
+  Keyword VARCHAR(255) NOT NULL,
+  TokensUsed INT,
+  id INT,
+  CreatedOn DATETIME,
+  UpdatedOn DATETIME,
+  FOREIGN KEY (id) REFERENCES opportunity(id)
+);
+
+CREATE TABLE gpt_description (
+  DescriptionID INT AUTO_INCREMENT PRIMARY KEY,
+  Description VARCHAR(255),
+  TokensUsed INT,
+  id INT,
+  CreatedOn DATETIME,
+  UpdatedOn DATETIME,
+  FOREIGN KEY (id) REFERENCES opportunity(id)
+);
+
+SELECT *
+FROM keyword k;
+
+SELECT id, description, gpt_description, gpt_description_token, gpt_keyword_token
+FROM opportunity o
+WHERE o.ID IN (73810, 77956, 24642, 46126, 62654, 9930, 46600, 55576, 20691, 58681);
+
+SELECT *
+FROM opportunity_keyword ok;
